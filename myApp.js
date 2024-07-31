@@ -2,6 +2,7 @@
 const express = require('express');
 const app = express();
 const path = require('path'); // Importar el módulo path
+const mongoose = require('mongoose');
 
 // Importar y configurar dotenv
 require('dotenv').config();
@@ -79,6 +80,19 @@ app.route('/name')
     // Enviar el JSON con el nombre completo
     res.json({ name: `${firstName} ${lastName}` });
   });
+//Importar moongoose
+const mongoose = require('mongoose');
+
+// Import and configure dotenv
+require('dotenv').config();
+
+// Connect to MongoDB Atlas
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(() => console.log('MongoDB connected'))
+.catch(err => console.error('MongoDB connection error:', err));
 
 // Hacer que la aplicación escuche en un puerto
 const port = 3000; // Puedes usar cualquier puerto disponible
