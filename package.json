@@ -1,12 +1,24 @@
 {
   "name": "fcc-back-end",
-  "author": "Eder Said Martinez Ramirez",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "A project that does something awesome",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js"
   },
-  "keywords": [ "descriptive", "related", "words", "freecodecamp" ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/E56n/fcc-back-end.git"
+  },
+  "author": "Eder Said Martinez Ramirez",
   "license": "ISC",
-  "description": "A project that does something awesome"
+  "dependencies": {
+    "express": "^4.14.0"
+  },
+  "keywords": [
+    "descriptive",
+    "related",
+    "words",
+    "freecodecamp"
+  ]
 }
