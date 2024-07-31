@@ -2,10 +2,14 @@
 const express = require('express');
 // Crear una aplicación express
 const app = express();
+const path = require('path'); // Importar el módulo path
 
 // Configurar la ruta raíz
 app.get('/', (req, res) => {
-  res.send('Hello Express');
+  // Construir la ruta absoluta del archivo
+  const filePath = path.join(__dirname, 'views', 'index.html');
+  // Enviar el archivo como respuesta
+  res.sendFile(filePath);
 });
 
 // Hacer que la aplicación escuche en un puerto
