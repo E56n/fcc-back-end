@@ -57,6 +57,23 @@ app.get('/:word/echo', (req, res) => {
   res.json({ echo: word });
 });
 
+// Configurar la ruta /name para manejar GET y POST
+app.route('/name')
+  .get((req, res) => {
+    // Extraer los parámetros de consulta
+    const firstName = req.query.first;
+    const lastName = req.query.last;
+    // Enviar el JSON con el nombre completo
+    res.json({ name: `${firstName} ${lastName}` });
+  })
+  .post(express.json(), (req, res) => {
+    // Extraer los datos del cuerpo de la solicitud
+    const firstName = req.body.first;
+    const lastName = req.body.last;
+    // Enviar el JSON con el nombre completo
+    res.json({ name: `${firstName} ${lastName}` });
+  });
+
 // Hacer que la aplicación escuche en un puerto
 const port = 3000; // Puedes usar cualquier puerto disponible
 app.listen(port, () => {
