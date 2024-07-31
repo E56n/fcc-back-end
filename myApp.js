@@ -10,6 +10,9 @@ require('dotenv').config();
 // Importar el módulo body-parser
 const bodyParser = require('body-parser');
 
+// Importar el modelo Person
+const Person = require('./models/person'); // Ajusta la ruta si es necesario
+
 // Middleware de registro de solicitudes
 function logger(req, res, next) {
   console.log(`${req.method} ${req.path} - ${req.ip}`);
@@ -24,6 +27,9 @@ app.use('/public', express.static(path.join(__dirname, 'public')));
 
 // Configurar el middleware para parsear datos de formularios URL encoded
 app.use(bodyParser.urlencoded({ extended: false }));
+
+// Configurar el middleware para parsear datos en formato JSON
+app.use(bodyParser.json());
 
 // Configurar la ruta raíz para servir el archivo HTML
 app.get('/', (req, res) => {
@@ -80,13 +86,8 @@ app.route('/name')
     // Enviar el JSON con el nombre completo
     res.json({ name: `${firstName} ${lastName}` });
   });
-//Importar moongoose
-const mongoose = require('mongoose');
 
-// Import and configure dotenv
-require('dotenv').config();
-
-// Connect to MongoDB Atlas
+// Conectar a MongoDB Atlas
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
