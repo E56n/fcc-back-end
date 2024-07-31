@@ -1,8 +1,10 @@
 // Importar el módulo express
 const express = require('express');
-// Crear una aplicación express
 const app = express();
 const path = require('path'); // Importar el módulo path
+
+// Importar y configurar dotenv
+require('dotenv').config();
 
 // Configurar el middleware para servir archivos estáticos
 app.use('/public', express.static(path.join(__dirname, 'public')));
@@ -18,7 +20,11 @@ app.get('/', (req, res) => {
 // Configurar la ruta /json para servir JSON
 app.get('/json', (req, res) => {
   // Crear el objeto JSON
-  const jsonResponse = { "message": "Hello json" };
+  let jsonResponse = { "message": "Hello json" };
+  // Modificar el mensaje basado en la variable de entorno
+  if (process.env.MESSAGE_STYLE === 'uppercase') {
+    jsonResponse.message = jsonResponse.message.toUpperCase();
+  }
   // Enviar el objeto JSON como respuesta
   res.json(jsonResponse);
 });
@@ -28,3 +34,4 @@ const port = 3000; // Puedes usar cualquier puerto disponible
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
+
