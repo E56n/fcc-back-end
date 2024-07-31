@@ -38,6 +38,17 @@ app.get('/json', (req, res) => {
   res.json(jsonResponse);
 });
 
+// Configurar la ruta /now con middleware encadenado
+app.get('/now', (req, res, next) => {
+  // Añadir la hora actual al objeto de solicitud
+  req.time = new Date().toString();
+  // Pasar al siguiente middleware
+  next();
+}, (req, res) => {
+  // Enviar la hora actual en formato JSON
+  res.json({ time: req.time });
+});
+
 // Hacer que la aplicación escuche en un puerto
 const port = 3000; // Puedes usar cualquier puerto disponible
 app.listen(port, () => {
