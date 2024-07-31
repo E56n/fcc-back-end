@@ -16,9 +16,10 @@
     "express": "^4.14.0"
   },
   "keywords": [
-    "descriptive",
-    "related",
-    "words",
-    "freecodecamp"
+    "freecodecamp",
+    "backend",
+    "api",
+    "node",
+    "express"
   ]
 }
