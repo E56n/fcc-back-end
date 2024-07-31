@@ -4,6 +4,9 @@ const express = require('express');
 const app = express();
 const path = require('path'); // Importar el módulo path
 
+// Configurar el middleware para servir archivos estáticos
+app.use('/public', express.static(path.join(__dirname, 'public')));
+
 // Configurar la ruta raíz
 app.get('/', (req, res) => {
   // Construir la ruta absoluta del archivo
