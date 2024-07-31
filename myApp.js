@@ -6,6 +6,9 @@ const path = require('path'); // Importar el módulo path
 // Importar y configurar dotenv
 require('dotenv').config();
 
+// Importar el módulo body-parser
+const bodyParser = require('body-parser');
+
 // Middleware de registro de solicitudes
 function logger(req, res, next) {
   console.log(`${req.method} ${req.path} - ${req.ip}`);
@@ -17,6 +20,9 @@ app.use(logger);
 
 // Configurar el middleware para servir archivos estáticos
 app.use('/public', express.static(path.join(__dirname, 'public')));
+
+// Configurar el middleware para parsear datos de formularios URL encoded
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // Configurar la ruta raíz para servir el archivo HTML
 app.get('/', (req, res) => {
@@ -66,7 +72,7 @@ app.route('/name')
     // Enviar el JSON con el nombre completo
     res.json({ name: `${firstName} ${lastName}` });
   })
-  .post(express.json(), (req, res) => {
+  .post((req, res) => {
     // Extraer los datos del cuerpo de la solicitud
     const firstName = req.body.first;
     const lastName = req.body.last;
