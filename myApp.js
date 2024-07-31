@@ -49,6 +49,14 @@ app.get('/now', (req, res, next) => {
   res.json({ time: req.time });
 });
 
+// Configurar la ruta /:word/echo para servir un JSON con el parámetro de ruta
+app.get('/:word/echo', (req, res) => {
+  // Obtener el parámetro de ruta
+  const word = req.params.word;
+  // Enviar el JSON con el parámetro de ruta
+  res.json({ echo: word });
+});
+
 // Hacer que la aplicación escuche en un puerto
 const port = 3000; // Puedes usar cualquier puerto disponible
 app.listen(port, () => {
