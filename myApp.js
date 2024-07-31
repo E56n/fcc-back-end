@@ -6,6 +6,15 @@ const path = require('path'); // Importar el módulo path
 // Importar y configurar dotenv
 require('dotenv').config();
 
+// Middleware de registro de solicitudes
+function logger(req, res, next) {
+  console.log(`${req.method} ${req.path} - ${req.ip}`);
+  next();
+}
+
+// Montar el middleware de registro
+app.use(logger);
+
 // Configurar el middleware para servir archivos estáticos
 app.use('/public', express.static(path.join(__dirname, 'public')));
 
@@ -34,4 +43,3 @@ const port = 3000; // Puedes usar cualquier puerto disponible
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
-
