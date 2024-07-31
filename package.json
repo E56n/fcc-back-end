@@ -1,12 +1,12 @@
 {
   "name": "fcc-back-end",
+  "author": "Eder Said Martinez Ramirez",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "Eder Said Martinez Ramirez",
   "license": "ISC",
   "description": ""
 }
